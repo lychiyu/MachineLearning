@@ -34,6 +34,11 @@ class KNNClassifier:
         y_predict = [self._predict(x_predict) for x_predict in X_predict]
         return np.array(y_predict)
 
+    def score(self, X_test, y_test):
+        """预测准确率"""
+        y_predict = self.predict(X_test)
+        return sum(y_predict == y_predict) / len(y_predict)
+
     def _predict(self, x):
         """给定单个待预测数据x，返回表示x的预测结果值"""
         assert x.shape[0] == self._X_train.shape[1], 'the feature number of x must be equal X_train'
